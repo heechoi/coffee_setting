@@ -1,0 +1,30 @@
+-- db 존재하면 삭제
+drop database if exists product_project;
+
+-- db 생성
+create database product_project;
+
+-- db 사용
+use product_project;
+
+-- 제품정보
+CREATE TABLE if not exists product_project.code (
+    codeid char(10) ,
+    codename char(10),
+    PRIMARY KEY (codeid)
+);
+
+-- 기록입력테이블
+CREATE TABLE if not exists product_project.record (
+    recordeno int(11) auto_increment, 
+    pdno char(10),
+    pdname char(10),
+    price int(10),
+    amount int(8),
+    margin int(2),
+    PRIMARY KEY (recordeno),
+    FOREIGN KEY (pdno) REFERENCES code(codeid)
+);
+
+-- create and gran user
+grant select, insert, update, delete on product_project.* to 'user_product_project' identified by '1111';
