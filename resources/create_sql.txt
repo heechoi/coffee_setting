@@ -16,15 +16,25 @@ CREATE TABLE if not exists product_project.code (
 
 -- 기록입력테이블
 CREATE TABLE if not exists product_project.record (
-    recordeno int(11) auto_increment, 
     pdno char(10),
     pdname char(10),
-    price int(10),
-    amount int(8),
-    margin int(2),
-    PRIMARY KEY (recordeno),
+    price int(11),
+    amount int(11),
+    margin int(11),
+    PRIMARY KEY (pdno),
     FOREIGN KEY (pdno) REFERENCES code(codeid)
+    on delete casecade
 );
 
+-- 판매기록
+CREATE TABLE if not exists product_project.sale(
+	salepd char(10),
+	saleprice int(11),
+	surtax int(11),
+	supplyprice int(11),
+	mgrate int(11),
+	
+	
+);
 -- create and gran user
 grant select, insert, update, delete on product_project.* to 'user_product_project' identified by '1111';
