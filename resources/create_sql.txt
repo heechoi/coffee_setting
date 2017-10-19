@@ -23,7 +23,6 @@ CREATE TABLE if not exists product_project.record (
     margin int(11),
     PRIMARY KEY (pdno),
     FOREIGN KEY (pdno) REFERENCES code(codeid)
-    on delete casecade
 );
 
 -- 판매기록
@@ -33,8 +32,7 @@ CREATE TABLE if not exists product_project.sale(
 	surtax int(11),
 	supplyprice int(11),
 	mgrate int(11),
-	
-	
+	PRIMARY KEY (salepd)
 );
 -- create and gran user
 grant select, insert, update, delete on product_project.* to 'user_product_project' identified by '1111';
