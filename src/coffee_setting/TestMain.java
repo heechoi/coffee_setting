@@ -13,10 +13,11 @@ public class TestMain {
 
 	public static void main(String[] args) {
 		DBCon dbCon = DBCon.getInstance(); 
-		//이것을 통해서 DBCon을 생성하는것 하나만 생성하는 방법 싱글텀
+		//이것을 통해서 DBCon을 생성하는것 하나만 생성하s는 방법 싱글텀
 		
 		Connection connection = dbCon.getConnection();
 		System.out.println(connection);
+		
 		
 		//초기화
 		DbService service = InitService.getInstance();
