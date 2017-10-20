@@ -31,7 +31,10 @@ CREATE TABLE if not exists product_project.sale(
 	surtax int(11),
 	supplyprice int(11),
 	mgrate int(11),
-	PRIMARY KEY (salecd)
+	PRIMARY KEY (salecd),
+	FOREIGN KEY (salecd) REFERENCES record(pdno)
+	on delete cascade
+	on update cascade
 );
 -- create and gran user
 grant select, insert, update, delete on product_project.* to 'user_product_project' identified by '1111';

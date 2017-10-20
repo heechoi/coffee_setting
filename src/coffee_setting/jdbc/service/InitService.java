@@ -26,7 +26,7 @@ public class InitService implements DbService{
 			StringBuilder statement = new StringBuilder();
 				for(String line;(line = br.readLine())!=null;){
 					if(!line.isEmpty()&&!line.startsWith("--")){
-						statement.append(line.trim());
+						statement.append(line.trim()+" ");
 					}
 					
 					if(line.endsWith(";")){
