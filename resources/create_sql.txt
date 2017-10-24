@@ -33,8 +33,19 @@ CREATE TABLE if not exists product_project.sale(
 	mgrate int(11),
 	PRIMARY KEY (salecd)
 );
+-- 판매순위 view
+create view rankPrice as 
+select (select count(*)+1 from sale where saleprice > s1.saleprice) rank, 
+record.pdno pdno, record.pdname pdname, record.price price, record.amount, s1.supplyprice,  s1.surtax,  s1.saleprice, record.margin,  s1.mgrate from sale as s1
+inner join record on s1.salecd = record.pdno order by rank;
+
+-- 마진율view
+create view rankMargin as
+select (select count(*)+1 from sale where mgrate > s1.mgrate) rank, 
+record.pdno pdno, record.pdname pdname, record.price price, record.amount, s1.supplyprice,  s1.surtax,  s1.saleprice, record.margin, s1.mgrate from sale as s1
+inner join record on s1.salecd = record.pdno order by rank;
+
 -- create and gran user
 grant select, insert, update, delete on product_project.* to 'user_product_project' identified by '1111';
 GRANT Trigger ON product_project.* TO 'user_product_project'@'%' ;
 FLUSH PRIVILEGES ;
-
